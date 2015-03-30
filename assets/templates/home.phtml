@@ -1,0 +1,89 @@
+<?php
+/*
+
+
+Folder Structure:
+apps/configs/application.php
+
+add into the array:
+
+
+ 'locale' => 'fr' // this is the language user want to translate into.
+
+ 'fallback' => 'en', // so if the page is unable to translate into "french" (fr) it will translate into english as
+                     // specified here
+
+
+
+Language Folder:
+
+apps/languages/en/page-name.php
+apps/languages/fr/page-name.php
+
+example:
+
+return array(
+    // Index method
+    'welcome_text' => 'Bienvenue',
+    'welcome_message' => '
+		Bonjour, bienvenue dans le contrôleur de bienvenue ! <br/>
+		Ce contenu peut être changé via le fichier: <code>/app/views/welcome/welcome.php</code>
+	',
+
+    'back_home' => 'Accueil',
+);
+
+You just need to include the language file which is exists in the directory and
+replace the "key" value and render wherever user want.
+
+$lang->translate('welcome_text'); // Displaying in the browser "Bienvenue"
+*/
+
+
+
+class Language {
+
+    private $_array;
+
+    public function load($name, $code = LANGUAGE_CODE) {
+
+        // lang file
+        $file = "apps/languages/$code/$name.php";
+        // check if is readable
+        if(is_readable($file)){
+            // require file
+            $this->_array = include($file);
+        } else {
+            // display error
+
+        }
+    }
+
+    public function get($value) {
+        if(!empty($this->_array[$value])){
+            return $this->_array[$value];
+        } else {
+            return $value;
+        }
+    }
+
+    public function show($value, $name, $code = LANGUAGE_CODE) {
+
+        // lang file
+        $file = "app/language/$code/$name.php";
+        // check if is readable
+        if(is_readable($file)){
+            // require file
+            $_array = include($file);
+        } else {
+            // display error
+
+        }
+        // If
+        if(!empty($_array[$value])){
+            return $_array[$value];
+        } else {
+            return $value;
+        }
+    }
+}

@@ -1,0 +1,17 @@
+
+<h3> Login </h3>
+<form id="uniform" role="form" ng-submit="login()" style="width:500px;margin-top: 10px;float:left;">
+
+    <label for="Name" class="col-sm-2 control-label" style="width:100%;">Email Address</label>
+    <input name="email" placeholder="Email" class="form-control" type="text" ng-model="credentials.email" required>
+
+    <label for="Password" class="col-sm-2 control-label" style="width:100%;" >Password</label>
+    <input name="password" placeholder="Password" class="form-control" type="password" ng-model="credentials.password" required>
+
+
+    <div class="row" style="margin-top:8px;">
+        <div class="col-sm-8 columns">
+            <input type="submit" class="btn btn-primary" value="Log In"/>
+        </div>
+    </div>
+</form>
