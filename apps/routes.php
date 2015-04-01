@@ -9,58 +9,6 @@ if (!defined('CF_SYSTEM')) {
 
 $app = Application::instance();
 
-$currentUser = 4;
-
-// Assuming you have your current user stored
-// in $currentUser, with the id property of 1
-$authority = new Authority($currentUser);
-
-/*
-    * Let's assign an alias to represent a group of actions
-    * so that we don't have to handle each action individually each time
-    */
-$authority->addAlias('manage', array('create', 'update', 'index', 'read', 'delete'));
-
-// Let's allow a User to see all other User resources
-$authority->allow('read', 'User');
-
-/*
-    * Now let's restrict a User to managing only hiself or herself through
-    * the use of a conditional callback.
-    *
-    * Callback Parameters:
-    * $self is always the current instance of Authority so that we always
-    * have access to the user or other functions within the scope of the callback.
-    * $user here will represent the User object we'll pass into the can() method later
-    */
-/*$authority->allow('manage', '\Apps\Models\User', function($self, $user) {
-        // Here we'll compare id's of the user objects - if they match, permission will
-        // be granted, else it will be denied.
-        return $self->user()->id === $user->id;
-    });
-
-// Now we can check to see if our rules are configured properly
-
-$otherUser = (object) array('id' => 2);
-if ($authority->can('read', 'User')) {
-    echo 'I can read about any user based on class!';
-}
-
-if ($authority->can('read', $otherUser)) {
-    echo 'I can read about another user!';
-}
-
-if ($authority->can('delete', $otherUser)) {
-    echo 'I cannot edit this user so you will not see me :(';
-}*/
-
-/*if ($authority->can('delete', $user)) {
-    echo 'I can delete my own user, so you see me :)';
-}*/
-
-
-
-
 use Cygnite\Common\SessionManager\Session;
 use Cygnite\Common\UrlManager\Url;
 use Cygnite\Mvc\View\Widget;
