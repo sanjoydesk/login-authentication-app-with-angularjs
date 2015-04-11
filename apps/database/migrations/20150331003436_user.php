@@ -8,7 +8,7 @@ use Cygnite\Database\Schema;
 * You may use up and down method to create migration
 */
 
-class Users extends Migration
+class User extends Migration
 {
 
     /* Your database name */
@@ -26,19 +26,19 @@ class Users extends Migration
             $this,
             function ($table) {
 
-                $table->tableName = 'users';
+                $table->tableName = 'user';
 
                 $table->create(
                     array(
-                        array('name'=> 'id', 'type' => 'int', 'length' => 11,
+                        array('column'=> 'id', 'type' => 'int', 'length' => 11,
                             'increment' => true, 'key' => 'primary'),
-                        array('name'=> 'name', 'type' => 'string', 'length' =>100),
-                        array('name'=> 'email', 'type' => 'string', 'length'  =>150),
-                        array('name'=> 'password', 'type' => 'string', 'length'  =>150),
-                        array('name'=> 'country', 'type' => 'string', 'length'  =>50),
-                        array('name'=> 'age', 'type' => 'int', 'length'  =>11),
-                        array('name'=> 'created_at', 'type' => 'datetime', 'length'  =>"DEFAULT '0000-00-00 00:00:00'"),
-                        array('name'=> 'updated_at', 'type' => 'datetime', 'length'  =>"DEFAULT '0000-00-00 00:00:00'"),
+                        array('column'=> 'name', 'type' => 'string', 'length' =>100),
+                        array('column'=> 'email', 'type' => 'string', 'length'  =>150),
+                        array('column'=> 'password', 'type' => 'string', 'length'  =>150),
+                        array('column'=> 'country', 'type' => 'string', 'length'  =>50),
+                        array('column'=> 'age', 'type' => 'int', 'length'  =>11),
+                        array('column'=> 'created_at', 'type' => 'datetime'),
+                        array('column'=> 'updated_at', 'type' => 'datetime'),
                     ),
                     'InnoDB',
                     'latin1'
@@ -58,7 +58,7 @@ class Users extends Migration
             'updated_at' => date( 'Y-m-d H:i:s')
         );
 
-        $this->insert('users', $data);
+        $this->insert('user', $data);
 		
 	}
 
@@ -70,12 +70,12 @@ class Users extends Migration
 	public function down()
 	{
 		 //Roll back your changes done by up method.
-        $this->trash(array(1));
+        $this->trash(1);
 
         Schema::instance(
             $this,
             function ($table) {
-                $table->tableName = 'users';
+                $table->tableName = 'user';
                 $table->drop()->run();
             }
         );

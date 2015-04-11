@@ -1,7 +1,9 @@
 <?php
 use Cygnite\Foundation\Application;
-use Authority\Authority;
 use Cygnite\Base\Router\Router;
+use Cygnite\Common\SessionManager\Session;
+use Cygnite\Common\UrlManager\Url;
+use Cygnite\Mvc\View\Widget;
 
 if (!defined('CF_SYSTEM')) {
     exit('No External script access allowed');
@@ -9,40 +11,16 @@ if (!defined('CF_SYSTEM')) {
 
 $app = Application::instance();
 
-use Cygnite\Common\SessionManager\Session;
-use Cygnite\Common\UrlManager\Url;
-use Cygnite\Mvc\View\Widget;
-
-
 // Before Router Middle Ware
-$app->router->before('GET', '/{:all}', function ($router)
+$app->router->before('GET', '/{:all}', function ()
 {
-    //show(Session::get());exit;
    //echo "This site is under maintenance.";exit;
-    if (!Session::has('auth:user')) {
-       // Url::redirectTo('user/login');
-    } else {
-        //Url::redirectTo('admin/category/index');
-    }
-
-});
-
-$app->router->get('/', function ($router)
-{
-    Widget::make('inventory::index', array());
-});
-
-
-
-$app->router->get('user/login/', function ($router)
-{
-    Router::call('Login.index', array());
 });
 
 // Dynamic route: /hello/cygnite/3222
-$app->router->get('/hello/{:name}/{:digit}', function ($router, $name, $id)
+$app->router->get('/angular/', function ($router)
 {
-   //Router::call('Home.welcome', array($name, $id));
+	echo Widget::make('home:index');
 });
 
 /*

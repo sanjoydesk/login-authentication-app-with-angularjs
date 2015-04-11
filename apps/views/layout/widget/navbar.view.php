@@ -13,14 +13,14 @@
 
             <ul class="nav navbar-nav">
                 <li><a href="<?php echo Url::getBase(); ?>"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                <li><a href="<?php echo Url::getBase(); ?>/inventory"><span class="glyphicon glyphicon-home"></span> Inventory</a></li>
             </ul>
 
             <ul class="nav navbar-nav pull-right">
                 <!-- Right side menu -->
-                <li> LogOut</li>
             </ul>
         </div>
     </div>
 </div>
 <!-- ./ navbar -->
+
+<div style="padding-top: 6%;"></div>

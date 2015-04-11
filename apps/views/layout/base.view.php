@@ -1,6 +1,8 @@
 <?php
 use Cygnite\Mvc\View\Widget;
+use Cygnite\AssetManager\Asset;
 use Cygnite\Common\UrlManager\Url;
+use Cygnite\Foundation\Application;
 use Cygnite\AssetManager\AssetCollection;
 
 $asset = AssetCollection::make(function ($asset)
@@ -25,72 +27,65 @@ $asset = AssetCollection::make(function ($asset)
 });
 ?>
 <!DOCTYPE html>
-<html lang="en" ng-app="MyTutorialApp">
-    <head>
-        <meta charset="UTF-8">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
 
-        <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <link rel="shortcut icon" href="<?php echo Url::getBase(); ?>assets/img/cygnite/fevicon.png" > </link>
+    <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" href="<?php echo Url::getBase(); ?>assets/img/cygnite/fevicon.png" > </link>
 
-        <title><?php echo $this->title; ?></title>
-        <meta name="keywords" content="CRUD Application" />
-        <meta name="author" content="Cygnite Framework Bootstrap Starter Site." />
-        <!-- Google will often use this as its description of your page/site. Make it good. -->
-        <meta name="description" content="Cygnite CRUD Generator." />
-        <!--  Mobile Viewport Fix -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title><?php echo $this->title; ?></title>
+    <meta name="keywords" content="CRUD Application" />
+    <meta name="author" content="Cygnite Framework Bootstrap Starter Site." />
+    <!-- Google will often use this as its description of your page/site. Make it good. -->
+    <meta name="description" content="Cygnite CRUD Generator." />
+    <!--  Mobile Viewport Fix -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-        <?php $asset->dump('style');// Header Style block ?>
-        <style>
-            body {
-                padding: 60px 0;
-            }
-        </style>
-        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-        <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-    </head>
-    <body  ng-controller="tasksController">
+    <?php $asset->dump('style');// Header Style block ?>
+    <style>
+        body {
+            padding: 60px 0;
+        }
+    </style>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
 
-    <!-- Fluid Container -->
-    <div class='container'>
+<!-- Fluid Container -->
+<div class='container'>
 
-        <!-- Navbar -->
-        <?php Widget::make('layout::widget::navbar'); ?>
-        <!-- ./ Navbar -->
+    <!-- Navbar -->
+    <?php echo Widget::make('layout:widget:navbar'); ?>
+    <!-- ./ Navbar -->
 
-        <!-- Content -->
-        <?php echo $yield; ?>
-        <!-- ./ Content -->
+    <!-- Content -->
+    <?php echo $yield; ?>
+    <!-- ./ Content -->
 
-        <!-- Footer -->
-        <footer class="clearfix"></footer>
-        <!-- ./ Footer -->
+    <!-- Footer -->
+    <footer class="clearfix"></footer>
+    <!-- ./ Footer -->
 
-    </div>
-    <!-- ./ Container End -->
+</div>
+<!-- ./ Container End -->
 <?php
 //Script block. Scripts will render here
 $asset->dump('script');
 ?>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
-<script type="text/javascript" src="http://localhost/mycygnite/assets/js/angular/app.js"></script>
-<script type="text/javascript" src="http://localhost/mycygnite/assets/js/angular/mainController.js"></script>
 
 <script type="text/javascript">
-$(function () {
-    $('#dataGrid').DataTable();
-    /*$("#myModal .iframe").click(function(){
-        alert("hey stupid");return false;
-        $("#myModal").modal('show');
-    });*/
-});
+    $(function () {
+        $('#dataGrid').DataTable();
+    });
 </script>
 
 <style type="text/css">
-.navbar-inverse {background: none repeat scroll 0 0 #07508f!important;}
+    .navbar-inverse {background: none repeat scroll 0 0 #07508f!important;}
 </style>
 
 </body>

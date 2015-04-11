@@ -29,7 +29,7 @@ class AuthController extends AbstractBaseController
     public function __construct()
     {
         parent::__construct();
-        $this->auth = Auth::model('\Apps\Models\Users');
+        $this->auth = Auth::model('\Apps\Models\User');
     }
 
 
@@ -49,16 +49,16 @@ class AuthController extends AbstractBaseController
         $input = Input::make();
         $post = $input->json();
 
-        $crypt = new Encrypt();
+        $crypt = new Encrypt();	
         $credentials = array(
             'email' => $post->email,
             'password' => $crypt->encode($post->password)
         );
-
+		
         if ($this->auth->verify($credentials)) {
             $this->auth->login();
             $userInfo = $this->auth->userInfo();
-            echo json_encode(array('success' => true, 'flash' => 'Logged In Successfully!!', 'name' => $userInfo['username']));
+            echo json_encode(array('success' => true, 'flash' => 'Logged In Successfully!!', 'name' => $userInfo['name']));
         } else {
             echo json_encode(array('success' => false, 'flash' => 'Invalid username or password', 'name' => ''));
         }

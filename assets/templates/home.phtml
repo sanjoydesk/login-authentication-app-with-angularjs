@@ -1,89 +1,38 @@
-<?php
-/*
+<!--<ng-include src="'assets/templates/navbar.php'"></ng-include>-->
 
+<div class="row">
+    <div class="col-sm-12 pull-right">
 
-Folder Structure:
-apps/configs/application.php
+        <ul class="nav navbar-nav pull-right">
+            <!-- Right side menu -->
+            <li > <a href="#">
+                    Welcome, {{ username }}
+                </a>
+            </li>
+            <li> <a href="index.php/angular/#/logout">Logout</a> </li>
+        </ul>
+    </div>
+</div>
 
-add into the array:
+<h3> {{ title }} </h3>
 
+<div class="row">
+    <div class="col-sm-12">
+        <div class="col-sm-8 pull-left" ng-show="content">
+            <p> Explore Awesome <a href='http://www.cygniteframework.com/2013/08/routing.html'>{{ cygnite }} </a> + <a href='http://angularjs.org/'>{{ angular }} </a> </p>
+			
+			<p>Tutorial Part1: Building A Simple Product Management App Using Angular JS + Cygnite PHP + Bootstrap </p>
+			
+			<p>You may use Cygnite PHP Framework and Angular JS to build your next awesome web application. </p>
+			
+			<p> Keep Visiting for Tutorial Part 2 where we will extend the app and build CRUD.</p>
 
- 'locale' => 'fr' // this is the language user want to translate into.
+        </div>
 
- 'fallback' => 'en', // so if the page is unable to translate into "french" (fr) it will translate into english as
-                     // specified here
+    </div>
 
-
-
-Language Folder:
-
-apps/languages/en/page-name.php
-apps/languages/fr/page-name.php
-
-example:
-
-return array(
-    // Index method
-    'welcome_text' => 'Bienvenue',
-    'welcome_message' => '
-		Bonjour, bienvenue dans le contrôleur de bienvenue ! <br/>
-		Ce contenu peut être changé via le fichier: <code>/app/views/welcome/welcome.php</code>
-	',
-
-    'back_home' => 'Accueil',
-);
-
-You just need to include the language file which is exists in the directory and
-replace the "key" value and render wherever user want.
-
-$lang->translate('welcome_text'); // Displaying in the browser "Bienvenue"
-*/
+</div>
 
 
 
-class Language {
 
-    private $_array;
-
-    public function load($name, $code = LANGUAGE_CODE) {
-
-        // lang file
-        $file = "apps/languages/$code/$name.php";
-        // check if is readable
-        if(is_readable($file)){
-            // require file
-            $this->_array = include($file);
-        } else {
-            // display error
-
-        }
-    }
-
-    public function get($value) {
-        if(!empty($this->_array[$value])){
-            return $this->_array[$value];
-        } else {
-            return $value;
-        }
-    }
-
-    public function show($value, $name, $code = LANGUAGE_CODE) {
-
-        // lang file
-        $file = "app/language/$code/$name.php";
-        // check if is readable
-        if(is_readable($file)){
-            // require file
-            $_array = include($file);
-        } else {
-            // display error
-
-        }
-        // If
-        if(!empty($_array[$value])){
-            return $_array[$value];
-        } else {
-            return $value;
-        }
-    }
-}
