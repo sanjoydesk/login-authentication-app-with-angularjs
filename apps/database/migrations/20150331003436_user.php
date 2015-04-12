@@ -70,7 +70,7 @@ class User extends Migration
 	public function down()
 	{
 		 //Roll back your changes done by up method.
-        $this->trash(1);
+        $this->delete('user', '1');
 
         Schema::instance(
             $this,
